@@ -90,3 +90,13 @@ body {
     @apply bg-[hsl(var(--column-bg))];
   }
 }
+
+.will-change-transform {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+[data-rbd-dragging-state="true"] {
+  transition: none !important;
+}

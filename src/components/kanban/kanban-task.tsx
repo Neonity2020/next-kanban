@@ -8,6 +8,7 @@ import { Pencil, Trash2 } from "lucide-react"
 import { formatDate } from "@/lib/utils"
 import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
+import { memo } from 'react'
 
 interface KanbanTaskProps {
   task: Task
@@ -16,7 +17,7 @@ interface KanbanTaskProps {
   onDelete?: (taskId: string) => void
 }
 
-export function KanbanTask({ task, index, onEdit, onDelete }: KanbanTaskProps) {
+export const KanbanTask = memo(function KanbanTask({ task, index, onEdit, onDelete }: KanbanTaskProps) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export function KanbanTask({ task, index, onEdit, onDelete }: KanbanTaskProps) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <Card className="group hover-card">
+          <Card className="group hover-card will-change-transform">
             <CardHeader className="p-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm">{task.title}</CardTitle>
@@ -84,7 +85,7 @@ export function KanbanTask({ task, index, onEdit, onDelete }: KanbanTaskProps) {
       )}
     </Draggable>
   )
-}
+})
 
 function getPriorityLabel(priority: string) {
   const labels = {
