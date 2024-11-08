@@ -8,6 +8,7 @@ import { TaskDialog } from "./task-dialog"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import { v4 as uuidv4 } from 'uuid'
+import { useLocalStorage } from "@/hooks/use-local-storage"
 
 const initialColumns: Column[] = [
   {
@@ -37,7 +38,7 @@ const initialColumns: Column[] = [
 ]
 
 export function KanbanBoard() {
-  const [columns, setColumns] = useState<Column[]>(initialColumns)
+  const [columns, setColumns] = useLocalStorage<Column[]>("kanban-columns", initialColumns)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [editingTask, setEditingTask] = useState<Task | undefined>()
 

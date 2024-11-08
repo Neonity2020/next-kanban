@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Pencil, Trash2 } from "lucide-react"
 import { formatDate } from "@/lib/utils"
 import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react"
 
 interface KanbanTaskProps {
   task: Task
@@ -16,6 +17,16 @@ interface KanbanTaskProps {
 }
 
 export function KanbanTask({ task, index, onEdit, onDelete }: KanbanTaskProps) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
@@ -53,7 +64,7 @@ export function KanbanTask({ task, index, onEdit, onDelete }: KanbanTaskProps) {
             </CardHeader>
             <CardContent className="p-3 pt-0">
               <p className="text-sm text-muted-foreground">{task.description}</p>
-              {task.priority && (
+              {task.priority && mounted && (
                 <div className="mt-2">
                   <span className={cn(
                     "text-xs px-2 py-1 rounded-full",
