@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Task } from "@/types/kanban"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 type Priority = 'low' | 'medium' | 'high';
 
@@ -34,6 +34,12 @@ export function TaskDialog({ open, onOpenChange, task, onSave }: TaskDialogProps
     priority: 'medium' as Priority,
     status: 'todo'
   })
+
+  useEffect(() => {
+    if (task) {
+      setFormData(task)
+    }
+  }, [task])
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
