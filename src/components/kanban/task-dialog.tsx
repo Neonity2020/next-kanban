@@ -28,7 +28,7 @@ interface TaskDialogProps {
 }
 
 export function TaskDialog({ open, onOpenChange, task, onSave }: TaskDialogProps) {
-  const [formData, setFormData] = useState<Partial<Task>>(task || {
+  const [formData, setFormData] = useState<Partial<Task>>({
     title: '',
     description: '',
     priority: 'medium' as Priority,
@@ -38,11 +38,31 @@ export function TaskDialog({ open, onOpenChange, task, onSave }: TaskDialogProps
   useEffect(() => {
     if (task) {
       setFormData(task)
+    } else {
+      setFormData({
+        title: '',
+        description: '',
+        priority: 'medium' as Priority,
+        status: 'todo'
+      })
     }
-  }, [task])
+  }, [task, open])
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog 
+      open={open} 
+      onOpenChange={(isOpen) => {
+        if (!isOpen) {
+          setFormData({
+            title: '',
+            description: '',
+            priority: 'medium' as Priority,
+            status: 'todo'
+          })
+        }
+        onOpenChange(isOpen)
+      }}
+    >
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{task ? '编辑任务' : '新建任务'}</DialogTitle>

@@ -43,7 +43,14 @@ export function KanbanBoard() {
   const [editingTask, setEditingTask] = useState<Task | undefined>()
 
   const handleAddTask = () => {
-    setEditingTask(undefined)
+    setEditingTask({
+      id: '',
+      title: '',
+      content: '',
+      description: '',
+      status: 'todo',
+      createdAt: new Date(),
+    })
     setDialogOpen(true)
   }
 
@@ -61,7 +68,7 @@ export function KanbanBoard() {
   }
 
   const handleSaveTask = (taskData: Partial<Task>) => {
-    if (editingTask) {
+    if (editingTask?.id) {
       // 编辑现有任务
       const newColumns = columns.map(column => ({
         ...column,
