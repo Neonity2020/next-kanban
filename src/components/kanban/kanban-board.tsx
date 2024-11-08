@@ -1,6 +1,6 @@
 'use client'
 
-import { DragDropContext, Droppable } from "@hello-pangea/dnd"
+import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd"
 import { useState } from "react"
 import { Column, Task, TaskStatus } from "@/types/kanban"
 import { KanbanColumn } from "./kanban-column"
@@ -95,7 +95,7 @@ export function KanbanBoard() {
     setEditingTask(undefined)
   }
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     const { destination, source } = result
 
     if (!destination || 
