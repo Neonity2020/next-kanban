@@ -66,6 +66,12 @@ body {
     --card-hover: 222 13% 24%;
     --column-bg: 222 13% 18%;
   }
+  a {
+    @apply transition-colors duration-200;
+  }
+  .dark a {
+    @apply text-blue-400 hover:text-blue-300;
+  }
 }
 
 @layer base {

@@ -9,6 +9,7 @@ import { formatDate } from "@/lib/utils"
 import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import { memo } from 'react'
+import { linkifyText } from "@/lib/utils"
 
 interface KanbanTaskProps {
   task: Task
@@ -64,7 +65,12 @@ export const KanbanTask = memo(function KanbanTask({ task, index, onEdit, onDele
               </CardDescription>
             </CardHeader>
             <CardContent className="p-3 pt-0">
-              <p className="text-sm text-muted-foreground">{task.description}</p>
+              <p 
+                className="text-sm text-muted-foreground"
+                dangerouslySetInnerHTML={{ 
+                  __html: linkifyText(task.description || '') 
+                }}
+              />
               {task.priority && mounted && (
                 <div className="mt-2">
                   <span className={cn(

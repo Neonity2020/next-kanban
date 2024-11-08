@@ -15,3 +15,13 @@ export function formatDate(date: Date) {
   
   return `${year}-${month}-${day} ${hour}:${minute}`
 }
+
+export function linkifyText(text: string) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.split(urlRegex).map((part, i) => {
+    if (part.match(urlRegex)) {
+      return `<a href="${part}" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">${part}</a>`;
+    }
+    return part;
+  }).join('');
+}
