@@ -127,9 +127,9 @@ export function KanbanBoard() {
       </div>
       
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row gap-4 p-4 bg-board rounded-lg">
           {columns.map((column) => (
-            <div key={column.id} className="flex-1">
+            <div key={column.id} className="w-full md:w-[350px]">
               <Droppable droppableId={column.id}>
                 {(provided) => (
                   <KanbanColumn

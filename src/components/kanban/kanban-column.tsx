@@ -19,7 +19,7 @@ export function KanbanColumn({
   onDeleteTask 
 }: KanbanColumnProps) {
   return (
-    <Card className="p-4">
+    <Card className="p-4 bg-column">
       <h3 className="font-medium mb-4">{column.title}</h3>
       <div
         ref={provided.innerRef}

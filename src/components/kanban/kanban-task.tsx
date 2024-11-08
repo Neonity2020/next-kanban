@@ -35,7 +35,7 @@ export function KanbanTask({ task, index, onEdit, onDelete }: KanbanTaskProps) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <Card className="group">
+          <Card className="group hover-card">
             <CardHeader className="p-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm">{task.title}</CardTitle>
